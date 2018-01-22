@@ -13,10 +13,10 @@
   lambda = NULL, biasadj = NULL, xreg = NULL, newxreg = NULL,
   allow.multiplicative.trend = FALSE, ...)
 
-stlm(y, s.window = 7, robust = FALSE, method = c("ets", "arima"),
-  modelfunction = NULL, model = NULL, etsmodel = "ZZN", lambda = NULL,
-  biasadj = FALSE, xreg = NULL, allow.multiplicative.trend = FALSE,
-  x = y, ...)
+stlm(y, s.window = 7, t.window = NULL, robust = FALSE, method = c("ets",
+  "arima"), modelfunction = NULL, model = NULL, etsmodel = "ZZN",
+  lambda = NULL, biasadj = FALSE, xreg = NULL,
+  allow.multiplicative.trend = FALSE, x = y, ...)
 
 \method{forecast}{stlm}(object, h = 2 * object$m, level = c(80, 95),
   fan = FALSE, lambda = object$lambda, biasadj = NULL, newxreg = NULL,
@@ -74,6 +74,9 @@ models are permitted.}
 \item{s.window}{Either the character string ``periodic'' or the span (in
 lags) of the loess window for seasonal extraction.}
 
+\item{t.window}{A number to control the smoothness of the trend. See
+\code{\link[stats]{stl}} for details.}
+
 \item{robust}{If \code{TRUE}, robust fitting will used in the loess
 procedure within \code{\link[stats]{stl}}.}
 
@@ -87,9 +90,6 @@ model is passed, this same model is fitted to y without re-estimating any
 parameters.}
 
 \item{x}{Deprecated. Included for backwards compatibility.}
-
-\item{t.window}{A number to control the smoothness of the trend. See
-\code{\link[stats]{stl}} for details.}
 }
 \value{
 \code{stlm} returns an object of class \code{stlm}. The other
